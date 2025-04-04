@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - SkyWings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .confirmation-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .confirmation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .confirmation-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-title {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .detail-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .detail-item i {
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-item h3 {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-item p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .qr-code {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .qr-code img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .qr-code p {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .action-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .download-btn:hover {
+            background: #45a049;
+        }
+
+        .home-btn {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .home-btn:hover {
+            background: #e9ecef;
+        }
+
+        .important-info {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .important-info h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .important-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .important-info li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-container {
+                padding: 0 1rem;
+            }
+
+            .confirmation-card {
+                padding: 1.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-bus"></i> SkyWings</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="buses.html"><i class="fas fa-bus"></i> Our Buses</a></li>
+                <li><a href="routes.html"><i class="fas fa-route"></i> Routes</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="confirmation-hero">
+            <div class="hero-content">
+                <h1>Booking Confirmed!</h1>
+                <p>Your journey is ready to begin</p>
+            </div>
+        </section>
+
+        <section class="confirmation-container">
+            <div class="confirmation-card">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h2 class="confirmation-title">Thank You for Choosing SkyWings</h2>
+                <p>Your booking has been confirmed successfully</p>
+
+                <div class="booking-details">
+                    <div class="detail-item">
+                        <i class="fas fa-ticket-alt"></i>
+                        <h3>Booking ID</h3>
+                        <p id="bookingId">-</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>From</h3>
+                        <p id="fromCity">-</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker"></i>
+                        <h3>To</h3>
+                        <p id="toCity">-</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-calendar"></i>
+                        <h3>Date</h3>
+                        <p id="journeyDate">-</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-bus"></i>
+                        <h3>Bus Type</h3>
+                        <p id="busType">-</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-users"></i>
+                        <h3>Passengers</h3>
+                        <p id="passengers">-</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-rupee-sign"></i>
+                        <h3>Amount Paid</h3>
+                        <p id="amount">-</p>
+                    </div>
+                </div>
+
+                <div class="qr-code">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=SKYWINGS-BOOKING" alt="Booking QR Code">
+                    <p>Show this QR code at the boarding point</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn download-btn" onclick="downloadTicket()">
+                        <i class="fas fa-download"></i> Download Ticket
+                    </button>
+                    <button class="action-btn home-btn" onclick="window.location.href='index.html'">
+                        <i class="fas fa-home"></i> Back to Home
+                    </button>
+                </div>
+
+                <div class="important-info">
+                    <h3><i class="fas fa-exclamation-circle"></i> Important Information</h3>
+                    <ul>
+                        <li><i class="fas fa-clock"></i> Please arrive at the boarding point 30 minutes before departure</li>
+                        <li><i class="fas fa-id-card"></i> Carry a valid ID proof for verification</li>
+                        <li><i class="fas fa-suitcase"></i> Maximum luggage allowance: 15 kg per person</li>
+                        <li><i class="fas fa-phone"></i> For any assistance, contact our 24/7 helpline: +91 1234567890</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> About Us</h3>
+                <p>SkyWings provides comfortable and reliable bus transportation services across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Quick Links</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="buses.html"><i class="fas fa-bus"></i> Our Buses</a></li>
+                    <li><a href="routes.html"><i class="fas fa-route"></i> Routes</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-phone"></i> Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> Email: info@skywings.com</p>
+                <p><i class="fas fa-phone"></i> Phone: +91 1234567890</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SkyWings. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const from = urlParams.get('from');
+        const to = urlParams.get('to');
+        const date = urlParams.get('date');
+        const price = urlParams.get('price');
+        const passengers = urlParams.get('passengers');
+        const busType = urlParams.get('busType');
+
+        // Update booking details
+        document.getElementById('fromCity').textContent = from;
+        document.getElementById('toCity').textContent = to;
+        document.getElementById('journeyDate').textContent = date;
+        document.getElementById('passengers').textContent = passengers;
+        document.getElementById('busType').textContent = busType;
+        document.getElementById('amount').textContent = `₹${price}`;
+        
+        // Generate random booking ID
+        document.getElementById('bookingId').textContent = 'SKW' + Math.floor(Math.random() * 1000000);
+
+        // Download ticket function
+        function downloadTicket() {
+            alert('Your ticket will be downloaded shortly...');
+            // Here you would typically generate and download a PDF ticket
+            // For demo purposes, we'll just show an alert
+        }
+    </script>
+</body>
+</html> 

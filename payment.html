@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - SkyWings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .payment-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .payment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .booking-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .route-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .detail-card i {
+            font-size: 1.5rem;
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-card h3 {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-card p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .payment-methods {
+            margin-top: 2rem;
+        }
+
+        .payment-methods h3 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .payment-option {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #4CAF50;
+            background: #f8f9fa;
+        }
+
+        .payment-option.selected {
+            border-color: #4CAF50;
+            background: #e8f5e9;
+        }
+
+        .payment-option i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #4CAF50;
+        }
+
+        .payment-option p {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .payment-details {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .price-breakdown {
+            margin-bottom: 2rem;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            color: #4CAF50;
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .pay-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .pay-btn:hover {
+            background: #45a049;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .secure-badge i {
+            color: #4CAF50;
+        }
+
+        @media (max-width: 992px) {
+            .payment-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .payment-container {
+                padding: 0 1rem;
+            }
+
+            .booking-summary,
+            .payment-details {
+                padding: 1.5rem;
+            }
+
+            .route-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-bus"></i> SkyWings</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="buses.html"><i class="fas fa-bus"></i> Our Buses</a></li>
+                <li><a href="routes.html"><i class="fas fa-route"></i> Routes</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="payment-hero">
+            <div class="hero-content">
+                <h1>Complete Your Booking</h1>
+                <p>Secure payment for your journey</p>
+            </div>
+        </section>
+
+        <section class="payment-container">
+            <div class="booking-summary">
+                <div class="summary-header">
+                    <h2><i class="fas fa-ticket-alt"></i> Booking Summary</h2>
+                    <span class="booking-id">#<span id="bookingId">12345</span></span>
+                </div>
+
+                <div class="route-details">
+                    <div class="detail-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>From</h3>
+                        <p id="fromCity">-</p>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-map-marker"></i>
+                        <h3>To</h3>
+                        <p id="toCity">-</p>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-calendar"></i>
+                        <h3>Date</h3>
+                        <p id="journeyDate">-</p>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Passengers</h3>
+                        <p id="passengers">-</p>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-bus"></i>
+                        <h3>Bus Type</h3>
+                        <p id="busType">-</p>
+                    </div>
+                </div>
+
+                <div class="payment-methods">
+                    <h3><i class="fas fa-credit-card"></i> Select Payment Method</h3>
+                    <div class="payment-options">
+                        <div class="payment-option" onclick="selectPayment('card')">
+                            <i class="fas fa-credit-card"></i>
+                            <p>Card Payment</p>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment('upi')">
+                            <i class="fas fa-mobile-alt"></i>
+                            <p>UPI</p>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment('netbanking')">
+                            <i class="fas fa-university"></i>
+                            <p>Net Banking</p>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment('wallet')">
+                            <i class="fas fa-wallet"></i>
+                            <p>Wallet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-details">
+                <h2><i class="fas fa-receipt"></i> Price Details</h2>
+                <div class="price-breakdown">
+                    <div class="price-item">
+                        <span>Base Fare</span>
+                        <span id="baseFare">₹0</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Taxes & Fees</span>
+                        <span>₹150</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Insurance</span>
+                        <span>₹50</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Total Amount</span>
+                        <span id="totalAmount">₹0</span>
+                    </div>
+                </div>
+                <button class="pay-btn" onclick="processPayment()">
+                    <i class="fas fa-lock"></i> Pay Now
+                </button>
+                <div class="secure-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure Payment</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> About Us</h3>
+                <p>SkyWings provides comfortable and reliable bus transportation services across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Quick Links</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="buses.html"><i class="fas fa-bus"></i> Our Buses</a></li>
+                    <li><a href="routes.html"><i class="fas fa-route"></i> Routes</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-phone"></i> Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> Email: info@skywings.com</p>
+                <p><i class="fas fa-phone"></i> Phone: +91 1234567890</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SkyWings. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const from = urlParams.get('from');
+        const to = urlParams.get('to');
+        const date = urlParams.get('date');
+        const price = urlParams.get('price');
+        const passengers = urlParams.get('passengers');
+        const busType = urlParams.get('busType');
+
+        // Update booking details
+        document.getElementById('fromCity').textContent = from;
+        document.getElementById('toCity').textContent = to;
+        document.getElementById('journeyDate').textContent = date;
+        document.getElementById('passengers').textContent = passengers;
+        document.getElementById('busType').textContent = busType;
+        document.getElementById('baseFare').textContent = `₹${price}`;
+        
+        // Calculate total amount
+        const baseFare = parseInt(price);
+        const taxes = 150;
+        const insurance = 50;
+        const total = baseFare + taxes + insurance;
+        document.getElementById('totalAmount').textContent = `₹${total}`;
+
+        // Generate random booking ID
+        document.getElementById('bookingId').textContent = Math.floor(Math.random() * 100000);
+
+        // Payment method selection
+        function selectPayment(method) {
+            const options = document.querySelectorAll('.payment-option');
+            options.forEach(option => option.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+        }
+
+        // Process payment
+        function processPayment() {
+            const selectedMethod = document.querySelector('.payment-option.selected');
+            if (!selectedMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+
+            // Get all booking details from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const from = urlParams.get('from');
+            const to = urlParams.get('to');
+            const date = urlParams.get('date');
+            const price = urlParams.get('price');
+            const passengers = urlParams.get('passengers');
+            const busType = urlParams.get('busType');
+
+            // Redirect to confirmation page with all details
+            window.location.href = `confirmation.html?from=${from}&to=${to}&date=${date}&price=${price}&passengers=${passengers}&busType=${busType}`;
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Journey - SkyWings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .booking-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .booking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        .booking-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #45a049;
+        }
+
+        .available-buses {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .bus-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .bus-card:hover {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bus-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .bus-type {
+            font-weight: 600;
+            color: #4CAF50;
+        }
+
+        .bus-details {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .bus-price {
+            text-align: right;
+        }
+
+        .price-amount {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4CAF50;
+        }
+
+        .price-per {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .select-btn {
+            padding: 0.8rem 1.5rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .select-btn:hover {
+            background: #45a049;
+        }
+
+        .no-buses {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .no-buses i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 992px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 0 1rem;
+            }
+
+            .booking-form,
+            .available-buses {
+                padding: 1.5rem;
+            }
+
+            .bus-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .bus-price {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-bus"></i> SkyWings</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="buses.html"><i class="fas fa-bus"></i> Our Buses</a></li>
+                <li><a href="routes.html"><i class="fas fa-route"></i> Routes</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="booking-hero">
+            <div class="hero-content">
+                <h1>Book Your Journey</h1>
+                <p>Find and book the perfect bus for your trip</p>
+            </div>
+        </section>
+
+        <section class="booking-container">
+            <div class="booking-form">
+                <h2><i class="fas fa-search"></i> Search Buses</h2>
+                <form id="searchForm">
+                    <div class="form-group">
+                        <label for="fromCity">From</label>
+                        <select id="fromCity" required>
+                            <option value="">Select Departure City</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Jaipur">Jaipur</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Mysore">Mysore</option>
+                            <option value="Pondicherry">Pondicherry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="toCity">To</label>
+                        <select id="toCity" required>
+                            <option value="">Select Arrival City</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="journeyDate">Date of Journey</label>
+                        <input type="date" id="journeyDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passengers">Number of Passengers</label>
+                        <input type="number" id="passengers" min="1" max="4" value="1" required>
+                    </div>
+
+                    <button type="submit" class="search-btn">
+                        <i class="fas fa-search"></i> Search Buses
+                    </button>
+                </form>
+            </div>
+
+            <div class="available-buses">
+                <h2><i class="fas fa-bus"></i> Available Buses</h2>
+                <div id="busList">
+                    <div class="no-buses">
+                        <i class="fas fa-bus"></i>
+                        <p>Select your journey details to see available buses</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> About Us</h3>
+                <p>SkyWings provides comfortable and reliable bus transportation services across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Quick Links</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="buses.html"><i class="fas fa-bus"></i> Our Buses</a></li>
+                    <li><a href="routes.html"><i class="fas fa-route"></i> Routes</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-phone"></i> Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> Email: info@skywings.com</p>
+                <p><i class="fas fa-phone"></i> Phone: +91 1234567890</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SkyWings. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Define available routes
+        const routes = {
+            'Mumbai': ['Delhi', 'Bangalore', 'Goa', 'Pune'],
+            'Delhi': ['Mumbai', 'Jaipur', 'Kolkata', 'Bangalore'],
+            'Bangalore': ['Mumbai', 'Delhi', 'Chennai', 'Mysore'],
+            'Chennai': ['Bangalore', 'Hyderabad', 'Pondicherry'],
+            'Hyderabad': ['Chennai', 'Bangalore', 'Mumbai'],
+            'Kolkata': ['Delhi', 'Bangalore', 'Chennai'],
+            'Jaipur': ['Delhi', 'Mumbai', 'Bangalore'],
+            'Goa': ['Mumbai', 'Bangalore', 'Pune'],
+            'Pune': ['Mumbai', 'Goa', 'Bangalore'],
+            'Mysore': ['Bangalore', 'Chennai', 'Hyderabad'],
+            'Pondicherry': ['Chennai', 'Bangalore', 'Mysore']
+        };
+
+        // Define bus types and their prices
+        const busTypes = {
+            'Royal AC Sleeper': 2500,
+            'Executive AC Sleeper': 2000,
+            'Premium AC Sleeper': 1800,
+            'Luxury AC Seater': 1500,
+            'Deluxe AC Seater': 1200,
+            'Standard AC Seater': 1000,
+            'Comfort AC Seater': 800,
+            'Economy AC Seater': 600
+        };
+
+        // Initialize the form
+        document.addEventListener('DOMContentLoaded', function() {
+            const fromSelect = document.getElementById('fromCity');
+            const toSelect = document.getElementById('toCity');
+            const dateInput = document.getElementById('journeyDate');
+            const searchForm = document.getElementById('searchForm');
+
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+
+            // Update arrival cities when departure city changes
+            fromSelect.addEventListener('change', function() {
+                const fromCity = this.value;
+                toSelect.innerHTML = '<option value="">Select Arrival City</option>';
+                
+                if (fromCity && routes[fromCity]) {
+                    routes[fromCity].forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city;
+                        option.textContent = city;
+                        toSelect.appendChild(option);
+                    });
+                }
+            });
+
+            // Handle form submission
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                searchBuses();
+            });
+        });
+
+        // Search buses function
+        function searchBuses() {
+            const fromCity = document.getElementById('fromCity').value;
+            const toCity = document.getElementById('toCity').value;
+            const journeyDate = document.getElementById('journeyDate').value;
+            const passengers = document.getElementById('passengers').value;
+
+            if (!fromCity || !toCity || !journeyDate) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            const busList = document.getElementById('busList');
+            busList.innerHTML = '';
+
+            // Generate random bus schedules
+            const schedules = generateBusSchedules(fromCity, toCity);
+            
+            if (schedules.length === 0) {
+                busList.innerHTML = `
+                    <div class="no-buses">
+                        <i class="fas fa-bus"></i>
+                        <p>No buses available for this route on selected date</p>
+                    </div>
+                `;
+                return;
+            }
+
+            schedules.forEach(schedule => {
+                const busCard = createBusCard(schedule, passengers);
+                busList.appendChild(busCard);
+            });
+        }
+
+        // Generate random bus schedules
+        function generateBusSchedules(fromCity, toCity) {
+            const schedules = [];
+            const busTypesList = Object.keys(busTypes);
+            
+            // Generate 3-5 random schedules
+            const numSchedules = Math.floor(Math.random() * 3) + 3;
+            
+            for (let i = 0; i < numSchedules; i++) {
+                const departureTime = new Date();
+                departureTime.setHours(Math.floor(Math.random() * 12) + 6); // Random time between 6 AM and 6 PM
+                
+                const busType = busTypesList[Math.floor(Math.random() * busTypesList.length)];
+                const price = busTypes[busType];
+                
+                schedules.push({
+                    departureTime: departureTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+                    busType: busType,
+                    price: price,
+                    duration: Math.floor(Math.random() * 4) + 4 + ' hours', // Random duration between 4-8 hours
+                    availableSeats: Math.floor(Math.random() * 10) + 5 // Random seats between 5-15
+                });
+            }
+
+            // Sort schedules by departure time
+            return schedules.sort((a, b) => {
+                return new Date('1970/01/01 ' + a.departureTime) - new Date('1970/01/01 ' + b.departureTime);
+            });
+        }
+
+        // Create bus card element
+        function createBusCard(schedule, passengers) {
+            const card = document.createElement('div');
+            card.className = 'bus-card';
+            
+            card.innerHTML = `
+                <div class="bus-info">
+                    <div class="bus-type">${schedule.busType}</div>
+                    <div class="bus-details">
+                        <div><i class="far fa-clock"></i> ${schedule.departureTime}</div>
+                        <div><i class="fas fa-hourglass-half"></i> ${schedule.duration}</div>
+                        <div><i class="fas fa-chair"></i> ${schedule.availableSeats} seats available</div>
+                    </div>
+                </div>
+                <div class="bus-price">
+                    <div class="price-amount">₹${schedule.price * passengers}</div>
+                    <div class="price-per">₹${schedule.price} per person</div>
+                </div>
+                <button class="select-btn" onclick="selectBus('${schedule.busType}', ${schedule.price}, ${passengers})">
+                    Select
+                </button>
+            `;
+
+            return card;
+        }
+
+        // Handle bus selection
+        function selectBus(busType, price, passengers) {
+            const fromCity = document.getElementById('fromCity').value;
+            const toCity = document.getElementById('toCity').value;
+            const journeyDate = document.getElementById('journeyDate').value;
+            const totalPrice = price * passengers;
+
+            // Store booking details in session storage
+            sessionStorage.setItem('bookingDetails', JSON.stringify({
+                from: fromCity,
+                to: toCity,
+                date: journeyDate,
+                passengers: passengers,
+                busType: busType,
+                price: totalPrice
+            }));
+
+            // Redirect to payment page
+            window.location.href = `payment.html?from=${fromCity}&to=${toCity}&date=${journeyDate}&price=${totalPrice}&passengers=${passengers}&busType=${busType}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Buses - SkyWings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to buses page */
+        .buses-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d1197?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .buses-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .buses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .bus-type-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .bus-type-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .bus-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .bus-content {
+            padding: 1.5rem;
+        }
+
+        .bus-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .bus-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .spec-item i {
+            color: var(--primary-color);
+        }
+
+        .bus-features {
+            margin: 1rem 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .feature-list i {
+            color: var(--secondary-color);
+        }
+
+        .bus-price {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .book-now-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .book-now-btn:hover {
+            background-color: #27ae60;
+            transform: scale(1.05);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .section-title i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-bus"></i> SkyWings</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="buses.html" class="active"><i class="fas fa-bus"></i> Our Buses</a></li>
+                <li><a href="routes.html"><i class="fas fa-route"></i> Routes</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="buses-hero">
+            <div class="hero-content">
+                <h1>Our Fleet of Buses</h1>
+                <p>Choose from our wide range of comfortable and modern buses</p>
+            </div>
+        </section>
+
+        <section class="buses-content">
+            <div class="buses-container">
+                <div class="bus-category">
+                    <h2><i class="fas fa-star"></i> Premium Buses</h2>
+                    <div class="buses-grid">
+                        <div class="bus-detail-card">
+                            <div class="bus-image" style="background-image: url('images/royal.jpg')">
+                                <div class="bus-overlay">
+                                    <h3>Royal AC Sleeper</h3>
+                                    <p>Starting from ₹2,199</p>
+                                </div>
+                            </div>
+                            <div class="bus-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 20 Premium Sleeper Seats</li>
+                                    <li><i class="fas fa-check"></i> Individual Privacy Curtains</li>
+                                    <li><i class="fas fa-check"></i> USB Charging Points</li>
+                                    <li><i class="fas fa-check"></i> Premium Entertainment System</li>
+                                    <li><i class="fas fa-check"></i> Onboard WiFi</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bus-detail-card">
+                            <div class="bus-image" style="background-image: url('images/2.jpg')">
+                                <div class="bus-overlay">
+                                    <h3>Premium AC Sleeper</h3>
+                                    <p>Starting from ₹1,799</p>
+                                </div>
+                            </div>
+                            <div class="bus-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 25 Comfortable Sleeper Seats</li>
+                                    <li><i class="fas fa-check"></i> Adjustable Headrests</li>
+                                    <li><i class="fas fa-check"></i> Power Outlets</li>
+                                    <li><i class="fas fa-check"></i> Entertainment System</li>
+                                    <li><i class="fas fa-check"></i> WiFi Available</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bus-detail-card">
+                            <div class="bus-image" style="background-image: url('images/1.jpg')">
+                                <div class="bus-overlay">
+                                    <h3>Executive AC Sleeper</h3>
+                                    <p>Starting from ₹1,899</p>
+                                </div>
+                            </div>
+                            <div class="bus-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 28 Executive Sleeper Seats</li>
+                                    <li><i class="fas fa-check"></i> Privacy Partitions</li>
+                                    <li><i class="fas fa-check"></i> USB & Power Outlets</li>
+                                    <li><i class="fas fa-check"></i> Premium Entertainment</li>
+                                    <li><i class="fas fa-check"></i> High-Speed WiFi</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bus-category">
+                    <h2><i class="fas fa-star"></i> Standard Buses</h2>
+                    <div class="buses-grid">
+                        <div class="bus-detail-card">
+                            <div class="bus-image" style="background-image: url('images/3.avif')">
+                                <div class="bus-overlay">
+                                    <h3>Volvo AC Sleeper</h3>
+                                    <p>Starting from ₹1,499</p>
+                                </div>
+                            </div>
+                            <div class="bus-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 30 Comfortable Seats</li>
+                                    <li><i class="fas fa-check"></i> Reclining Seats</li>
+                                    <li><i class="fas fa-check"></i> Power Outlets</li>
+                                    <li><i class="fas fa-check"></i> Entertainment System</li>
+                                    <li><i class="fas fa-check"></i> WiFi Available</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bus-detail-card">
+                            <div class="bus-image" style="background-image: url('images/4.avif')">
+                                <div class="bus-overlay">
+                                    <h3>Luxury AC Seater</h3>
+                                    <p>Starting from ₹1,299</p>
+                                </div>
+                            </div>
+                            <div class="bus-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 40 Premium Seats</li>
+                                    <li><i class="fas fa-check"></i> Extra Legroom</li>
+                                    <li><i class="fas fa-check"></i> USB Ports</li>
+                                    <li><i class="fas fa-check"></i> Entertainment System</li>
+                                    <li><i class="fas fa-check"></i> WiFi Available</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bus-detail-card">
+                            <div class="bus-image" style="background-image: url('images/5.jpeg')">
+                                <div class="bus-overlay">
+                                    <h3>Deluxe AC Seater</h3>
+                                    <p>Starting from ₹1,199</p>
+                                </div>
+                            </div>
+                            <div class="bus-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 45 Comfortable Seats</li>
+                                    <li><i class="fas fa-check"></i> Reclining Seats</li>
+                                    <li><i class="fas fa-check"></i> Power Outlets</li>
+                                    <li><i class="fas fa-check"></i> Entertainment System</li>
+                                    <li><i class="fas fa-check"></i> WiFi Available</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bus-category">
+                    <h2><i class="fas fa-star"></i> Economy Buses</h2>
+                    <div class="buses-grid">
+                        <div class="bus-detail-card">
+                            <div class="bus-image" style="background-image: url('images/6.jpg')">
+                                <div class="bus-overlay">
+                                    <h3>Standard AC Seater</h3>
+                                    <p>Starting from ₹999</p>
+                                </div>
+                            </div>
+                            <div class="bus-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 50 Comfortable Seats</li>
+                                    <li><i class="fas fa-check"></i> Standard Legroom</li>
+                                    <li><i class="fas fa-check"></i> Power Outlets</li>
+                                    <li><i class="fas fa-check"></i> Entertainment System</li>
+                                    <li><i class="fas fa-check"></i> WiFi Available</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bus-detail-card">
+                                <div class="bus-image" style="background-image: url('images/7.jpg')">
+                                    <div class="bus-overlay">
+                                    <h3>Comfort AC Seater</h3>
+                                    <p>Starting from ₹1,399</p>
+                                </div>
+                            </div>
+                            <div class="bus-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 42 Comfortable Seats</li>
+                                    <li><i class="fas fa-check"></i> Extra Legroom</li>
+                                    <li><i class="fas fa-check"></i> USB & Power Outlets</li>
+                                    <li><i class="fas fa-check"></i> Entertainment System</li>
+                                    <li><i class="fas fa-check"></i> WiFi Available</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bus-detail-card">
+                            <div class="bus-image" style="background-image: url('images/8.jpg')">
+                                <div class="bus-overlay">
+                                    <h3>Economy AC Seater</h3>
+                                    <p>Starting from ₹899</p>
+                                </div>
+                            </div>
+                            <div class="bus-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 55 Comfortable Seats</li>
+                                    <li><i class="fas fa-check"></i> Standard Legroom</li>
+                                    <li><i class="fas fa-check"></i> Power Outlets</li>
+                                    <li><i class="fas fa-check"></i> Entertainment System</li>
+                                    <li><i class="fas fa-check"></i> WiFi Available</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> About Us</h3>
+                <p>SkyWings provides comfortable and reliable bus transportation services across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Quick Links</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="buses.html"><i class="fas fa-bus"></i> Our Buses</a></li>
+                    <li><a href="routes.html"><i class="fas fa-route"></i> Routes</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-phone"></i> Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> Email: info@skywings.com</p>
+                <p><i class="fas fa-phone"></i> Phone: +91 1234567890</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SkyWings. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 
